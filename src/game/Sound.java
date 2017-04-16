@@ -13,6 +13,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound implements LineListener {
+	
+	private boolean playCompleted = false;
 	private Clip audioClip;
 
 	public Sound() {
