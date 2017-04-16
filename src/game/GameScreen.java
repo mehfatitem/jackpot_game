@@ -45,6 +45,8 @@ public class GameScreen extends Component {
 	//values for jackpot table//
 	private final String gameIcon = "D:////gameIcon//gameIcon.jpg//";
 	private final String winMusic = "D://///gameMusic//winMusic.wav//";
+	private final String loseMusic = "D://///gameMusic//loseMusic.wav//";
+	private final String playMusic = "D://///gameMusic//playMusic.wav//";
 	private final String resetMusic = "D://///gameMusic//resetMusic.wav//";
 	private final String jackPotPic = "D:////jackpotPic//";
 	private final String voiceIcon = "D:////voiceIcon//";
@@ -56,7 +58,7 @@ public class GameScreen extends Component {
 		render();
 		buttonStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				snd.playMusic("D://///gameMusic//playMusic.wav//", true);
+				snd.playMusic(playMusic);
 				life--;
 				lifeScore.setText(Integer.toString(life));
 				resetComponent();
@@ -64,7 +66,7 @@ public class GameScreen extends Component {
 				displayMessage(life);
 				resetMatrix(picMatrix, 3, 3);
 				if (life == 0 && confirm == false) {
-					snd.playMusic("D://///gameMusic//loseMusic.wav//", true);
+					snd.playMusic(loseMusic);
 					JOptionPane.showMessageDialog(null, "You lost !!!", "Game Over ", JOptionPane.PLAIN_MESSAGE);
 					life = 5;
 					point = 0;
@@ -75,7 +77,7 @@ public class GameScreen extends Component {
 		});
 		buttonReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				snd.playMusic(resetMusic, true);
+				snd.playMusic(resetMusic);
 				confirm = false;
 				life = 5;
 				point = 0;
@@ -181,7 +183,7 @@ public class GameScreen extends Component {
 			pointScore.setText(Integer.toString(calculateScore(life)));
 			life = 5;
 			point = 0;
-			snd.playMusic(winMusic, true);
+			snd.playMusic(winMusic);
 			JOptionPane.showMessageDialog(null, "You win.", "Game Over ", JOptionPane.PLAIN_MESSAGE);
 			lifeScore.setText(Integer.toString(life));
 			pointScore.setText(Integer.toString(calculateScore(life)));
