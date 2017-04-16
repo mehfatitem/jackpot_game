@@ -14,6 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound implements LineListener {
 	
+	@SuppressWarnings("unused")
 	private boolean playCompleted = false;
 	private Clip audioClip;
 
@@ -21,7 +22,7 @@ public class Sound implements LineListener {
 
 	}
 
-	public void playMusic(String audioFilePath, boolean condition) {
+	public void playMusic(String audioFilePath) {
 		File audioFile = new File(audioFilePath);
 		audioClip = null;
 		try {
