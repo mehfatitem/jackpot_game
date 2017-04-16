@@ -123,12 +123,12 @@ public class GameScreen extends Component {
 	}
 
 	public void setVoiceIcon() {
-		imgp1 = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
-		imgp1.setLocation(445, 5);
+		voicep = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
+		voicep.setLocation(445, 5);
 		frame.getContentPane().add(imgp1);
 
-		imgp2 = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
-		imgp2.setLocation(445, 5);
+		mutep = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
+		mutep.setLocation(445, 5);
 		frame.getContentPane().add(imgp2);
 
 		imgp1.addMouseListener(new MouseAdapter() {
