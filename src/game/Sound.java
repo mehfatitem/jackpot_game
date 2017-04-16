@@ -13,7 +13,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound implements LineListener {
-	boolean playCompleted = false;
 	private Clip audioClip;
 
 	public Sound() {
@@ -24,17 +23,15 @@ public class Sound implements LineListener {
 		File audioFile = new File(audioFilePath);
 		audioClip = null;
 		try {
-			if (condition == true) {
-				AudioInputStream au = AudioSystem.getAudioInputStream(audioFile);
-				AudioFormat format = au.getFormat();
-				DataLine.Info info = new DataLine.Info(Clip.class, format);
-				audioClip = (Clip) AudioSystem.getLine(info);
-				audioClip.addLineListener(this);
+			AudioInputStream au = AudioSystem.getAudioInputStream(audioFile);
+			AudioFormat format = au.getFormat();
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			audioClip = (Clip) AudioSystem.getLine(info);
+			audioClip.addLineListener(this);
 
-				audioClip.open(au);
+			audioClip.open(au);
 
-				audioClip.start();
-			}
+			audioClip.start();
 		} catch (UnsupportedAudioFileException ex) {
 			System.out.println("The specified audio file is not supported.");
 			ex.printStackTrace();
