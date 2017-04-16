@@ -59,18 +59,18 @@ public class GameScreen extends Component {
 		buttonStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				snd.playMusic(playMusic);
-				life--;
-				lifeScore.setText(Integer.toString(life));
+				GameScreen.life--;
+				lifeScore.setText(Integer.toString(GameScreen.life));
 				resetComponent();
 				render();
 				displayMessage();
 				resetMatrix(picMatrix, 3, 3);
-				if (life == 0 && confirm == false) {
+				if (GameScreen.life == 0 && confirm == false) {
 					snd.playMusic(loseMusic);
 					JOptionPane.showMessageDialog(null, "You lost !!!", "Game Over ", JOptionPane.PLAIN_MESSAGE);
-					life = 5;
+					GameScreen.life = 5;
 					point = 0;
-					lifeScore.setText(Integer.toString(life));
+					lifeScore.setText(Integer.toString(GameScreen.life));
 				}
 				confirm = false;
 			}
@@ -79,9 +79,9 @@ public class GameScreen extends Component {
 			public void actionPerformed(ActionEvent arg0) {
 				snd.playMusic(resetMusic);
 				confirm = false;
-				life = 5;
+				GameScreen.life = 5;
 				point = 0;
-				lifeScore.setText(Integer.toString(life));
+				lifeScore.setText(Integer.toString(GameScreen.life));
 				resetComponent();
 				render();
 				resetMatrix(picMatrix, 3, 3);
@@ -101,7 +101,7 @@ public class GameScreen extends Component {
 		lifeName.setBounds(20, 40, 90, 25);
 		lifeName.setText("LIFE :");
 		lifeScore.setBounds(60, 40, 90, 25);
-		lifeScore.setText(Integer.toString(life));
+		lifeScore.setText(Integer.toString(GameScreen.life));
 		pointName.setBounds(20, 60, 90, 25);
 		pointName.setText("SCORE :");
 		pointScore.setBounds(70, 60, 90, 25);
@@ -186,7 +186,7 @@ public class GameScreen extends Component {
 			GameScreen.life = 5;
 			point = 0;
 			lifeScore.setText(Integer.toString(GameScreen.life));
-			pointScore.setText(Integer.toString(calculateScore(life)));
+			pointScore.setText(Integer.toString(calculateScore(GameScreen.life)));
 		}
 	}
 
