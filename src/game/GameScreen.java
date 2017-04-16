@@ -35,7 +35,7 @@ public class GameScreen extends Component {
 	private String[][] picMatrix = new String[10][10];
 	private int ImlocationX = 100;
 	private int ImlocationY = 100;
-	private int life = 5;
+	private static int life = 5;
 	private int point = 0;
 	private boolean confirm = false;
 	
@@ -63,7 +63,7 @@ public class GameScreen extends Component {
 				lifeScore.setText(Integer.toString(life));
 				resetComponent();
 				render();
-				displayMessage(life);
+				displayMessage();
 				resetMatrix(picMatrix, 3, 3);
 				if (life == 0 && confirm == false) {
 					snd.playMusic(loseMusic);
@@ -177,15 +177,15 @@ public class GameScreen extends Component {
 		ImlocationY = 100;
 	}
 
-	public void displayMessage(int life) {
+	public void displayMessage() {
 		if (picMatrix[1][0] == picMatrix[1][1] && picMatrix[1][1] == picMatrix[1][2]) {
 			confirm = true;
-			pointScore.setText(Integer.toString(calculateScore(life)));
-			life = 5;
-			point = 0;
+			pointScore.setText(Integer.toString(calculateScore(GameScreen.life)));
 			snd.playMusic(winMusic);
 			JOptionPane.showMessageDialog(null, "You win.", "Game Over ", JOptionPane.PLAIN_MESSAGE);
-			lifeScore.setText(Integer.toString(life));
+			GameScreen.life = 5;
+			point = 0;
+			lifeScore.setText(Integer.toString(GameScreen.life));
 			pointScore.setText(Integer.toString(calculateScore(life)));
 		}
 	}
