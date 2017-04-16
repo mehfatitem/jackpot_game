@@ -27,9 +27,9 @@ public class GameScreen extends Component {
 	private JLabel lifeScore = new JLabel();
 	private JLabel pointName = new JLabel();
 	private JLabel pointScore = new JLabel();
-	private ImagePanel imgp;
-	private ImagePanel imgp1;
-	private ImagePanel imgp2;
+	private ImagePanel gamep;
+	private ImagePanel voicep;
+	private ImagePanel mutep;
 
 	//game algorithms values//
 	private String[][] picMatrix = new String[10][10];
@@ -134,15 +134,15 @@ public class GameScreen extends Component {
 		imgp1.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				imgp1.show(false);
-				imgp2.show(true);
+				voicep.show(false);
+				mutep.show(true);
 			}
 		});
 		imgp2.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				imgp2.show(false);
-				imgp1.show(true);
+				mutep.show(false);
+				voicep.show(true);
 			}
 		});
 	}
@@ -153,8 +153,8 @@ public class GameScreen extends Component {
 			for (int j = 0; j < 3; j++) {
 				int temp = rnd.nextInt(3);
 				picMatrix[i][j] = path[temp];
-				imgp = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
-				imgp.setLocation(ImlocationX, ImlocationY);
+				gamep = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
+				gamep.setLocation(ImlocationX, ImlocationY);
 				frame.getContentPane().add(imgp);
 				ImlocationX += 100;
 			}
