@@ -27,9 +27,11 @@ public class GameScreen extends Component {
 	private JLabel lifeScore = new JLabel();
 	private JLabel pointName = new JLabel();
 	private JLabel pointScore = new JLabel();
-	private ImagePanel imgp;
-	private ImagePanel imgp1;
-	private ImagePanel imgp2;
+	private ImagePanel gamep;
+	private ImagePanel voicep;
+	private ImagePanel mutep;
+	
+	private final static Dimension size = new Dimension(500, 530);
 
 	// game algorithms values//
 	private final static String[][] picMatrix = new String[10][10];
@@ -54,11 +56,8 @@ public class GameScreen extends Component {
 	private final static String playMusic = gameMusic + "playMusic.wav//";
 	private final static String resetMusic = gameMusic + "resetMusic.wav//";
 
-	private final static String[] gamePath = { jackPotPic + "elma.jpg", jackPotPic + "armut.jpg",
-			jackPotPic + "muz.jpg" };
+	private final static String[] gamePath = { jackPotPic + "elma.jpg", jackPotPic + "armut.jpg",jackPotPic + "muz.jpg" };
 	private final static String[] voicePath = { voiceIcon + "voice.jpg", voiceIcon + "muteVoice.jpg" };
-
-	private final static Dimension size = new Dimension(500, 530);
 
 	public GameScreen() {
 		render();
@@ -129,26 +128,26 @@ public class GameScreen extends Component {
 	}
 
 	public void setVoiceIcon() {
-		imgp1 = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
-		imgp1.setLocation(445, 5);
-		frame.getContentPane().add(imgp1);
+		voicep = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
+		voicep.setLocation(445, 5);
+		frame.getContentPane().add(voicep);
 
-		imgp2 = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
-		imgp2.setLocation(445, 5);
-		frame.getContentPane().add(imgp2);
+		mutep = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
+		mutep.setLocation(445, 5);
+		frame.getContentPane().add(mutep);
 
-		imgp1.addMouseListener(new MouseAdapter() {
+		voicep.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				imgp1.show(false);
-				imgp2.show(true);
+				voicep.show(false);
+				mutep.show(true);
 			}
 		});
-		imgp2.addMouseListener(new MouseAdapter() {
+		mutep.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				imgp2.show(false);
-				imgp1.show(true);
+				mutep.show(false);
+				voicep.show(true);
 			}
 		});
 	}
@@ -159,9 +158,9 @@ public class GameScreen extends Component {
 			for (int j = 0; j < 3; j++) {
 				int temp = rnd.nextInt(3);
 				picMatrix[i][j] = gamePath[temp];
-				imgp = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
-				imgp.setLocation(ImlocationX, ImlocationY);
-				frame.getContentPane().add(imgp);
+				gamep = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
+				gamep.setLocation(ImlocationX, ImlocationY);
+				frame.getContentPane().add(gamep);
 				ImlocationX += 100;
 			}
 			ImlocationX = 100;
