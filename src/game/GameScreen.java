@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class GameScreen extends Component {
 	private static final long serialVersionUID = 1L;
 
-	//game panel component//
+	// game panel component//
 	private JFrame frame = new JFrame();
 	private JButton buttonStart = new JButton();
 	private JButton buttonReset = new JButton();
@@ -27,32 +27,38 @@ public class GameScreen extends Component {
 	private JLabel lifeScore = new JLabel();
 	private JLabel pointName = new JLabel();
 	private JLabel pointScore = new JLabel();
-	private ImagePanel gamep;
-	private ImagePanel voicep;
-	private ImagePanel mutep;
+	private ImagePanel imgp;
+	private ImagePanel imgp1;
+	private ImagePanel imgp2;
 
-	//game algorithms values//
-	private String[][] picMatrix = new String[10][10];
-	private int ImlocationX = 100;
-	private int ImlocationY = 100;
+	// game algorithms values//
+	private final static String[][] picMatrix = new String[10][10];
+	private static int ImlocationX = 100;
+	private static int ImlocationY = 100;
 	private static int life = 5;
-	private int point = 0;
-	private boolean confirm = false;
-	
-	//Sound object//
-	private Sound snd = new Sound();
-	
-	//values for jackpot table//
-	private final String gameIcon = "D:////gameIcon//gameIcon.jpg//";
-	private final String winMusic = "D://///gameMusic//winMusic.wav//";
-	private final String loseMusic = "D://///gameMusic//loseMusic.wav//";
-	private final String playMusic = "D://///gameMusic//playMusic.wav//";
-	private final String resetMusic = "D://///gameMusic//resetMusic.wav//";
-	private final String jackPotPic = "D:////jackpotPic//";
-	private final String voiceIcon = "D:////voiceIcon//";
-	private final String[] path = { jackPotPic + "rihanna.jpg", jackPotPic + "angelina.jpg", jackPotPic + "shakira.jpg" };
-	private final String[] voicePath = { voiceIcon + "voice.jpg", voiceIcon + "muteVoice.jpg" };
-	private Dimension size = new Dimension(500, 530);
+	private static int point = 0;
+	private static boolean confirm = false;
+
+	// Sound object//
+	private final static Sound snd = new Sound();
+
+	// values for jackpot table//
+	private final static String baseGameIcon = "D:////gameIcon//";
+	private final static String jackPotPic = "D:////jackpotPic//";
+	private final static String voiceIcon = "D:////voiceIcon//";
+	private final static String gameMusic = "D:////gameMusic//";
+
+	private final static String gameIcon = baseGameIcon + "gameIcon.jpg//";
+	private final static String winMusic = gameMusic + "winMusic.wav//";
+	private final static String loseMusic = gameMusic + "loseMusic.wav//";
+	private final static String playMusic = gameMusic + "playMusic.wav//";
+	private final static String resetMusic = gameMusic + "resetMusic.wav//";
+
+	private final static String[] gamePath = { jackPotPic + "elma.jpg", jackPotPic + "armut.jpg",
+			jackPotPic + "muz.jpg" };
+	private final static String[] voicePath = { voiceIcon + "voice.jpg", voiceIcon + "muteVoice.jpg" };
+
+	private final static Dimension size = new Dimension(500, 530);
 
 	public GameScreen() {
 		render();
@@ -101,7 +107,7 @@ public class GameScreen extends Component {
 		lifeName.setBounds(20, 40, 90, 25);
 		lifeName.setText("LIFE :");
 		lifeScore.setBounds(60, 40, 90, 25);
-		lifeScore.setText(Integer.toString(GameScreen.life));
+		lifeScore.setText(Integer.toString(life));
 		pointName.setBounds(20, 60, 90, 25);
 		pointName.setText("SCORE :");
 		pointScore.setBounds(70, 60, 90, 25);
@@ -123,26 +129,26 @@ public class GameScreen extends Component {
 	}
 
 	public void setVoiceIcon() {
-		voicep = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
-		voicep.setLocation(445, 5);
+		imgp1 = new ImagePanel(new ImageIcon(voicePath[0]).getImage());
+		imgp1.setLocation(445, 5);
 		frame.getContentPane().add(imgp1);
 
-		mutep = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
-		mutep.setLocation(445, 5);
+		imgp2 = new ImagePanel(new ImageIcon(voicePath[1]).getImage());
+		imgp2.setLocation(445, 5);
 		frame.getContentPane().add(imgp2);
 
 		imgp1.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				voicep.show(false);
-				mutep.show(true);
+				imgp1.show(false);
+				imgp2.show(true);
 			}
 		});
 		imgp2.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
-				mutep.show(false);
-				voicep.show(true);
+				imgp2.show(false);
+				imgp1.show(true);
 			}
 		});
 	}
@@ -152,9 +158,9 @@ public class GameScreen extends Component {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				int temp = rnd.nextInt(3);
-				picMatrix[i][j] = path[temp];
-				gamep = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
-				gamep.setLocation(ImlocationX, ImlocationY);
+				picMatrix[i][j] = gamePath[temp];
+				imgp = new ImagePanel(new ImageIcon(picMatrix[i][j]).getImage());
+				imgp.setLocation(ImlocationX, ImlocationY);
 				frame.getContentPane().add(imgp);
 				ImlocationX += 100;
 			}
@@ -219,7 +225,6 @@ public class GameScreen extends Component {
 		this.makePictureMatrix();
 		this.makeForm();
 	}
-
 
 	public static void main(String[] args) {
 		new GameScreen();
